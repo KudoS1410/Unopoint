@@ -34,3 +34,37 @@ class Button{
     return(click)
   }
 }
+class Table{
+  constructor(size){
+    this.size = size
+    this.arr = []
+    this.base = []
+  }
+  init(){
+    let n = this.size
+    for(var i = 0; i < n; i++){
+      this.base[i] = []
+      for(let j = 0; j < n; j++){
+        this.base[i][j] = new Button(i*size+25, j * size + 10, size / 2, size / 2)
+      }
+    }
+  }
+  display(){
+    for (var i = 0; i < this.base.length; i++) {
+      for(var j = 0; j < this.base[i].length; j++){
+        print("display")
+        this.base[i][j].display()
+      }
+    }
+  }
+  click(){
+    for (var i = 0; i < this.base.length; i++) {
+      for(var j = 0; j < this.base.length; j++){
+        let ret = this.base[i][j].click(mouseX, mouseY, false)
+        if(ret && i!=j){
+          this.base[j][i].click(mouseX, mouseY, true)
+        }
+      }
+    }
+  }
+}
